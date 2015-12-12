@@ -5,16 +5,17 @@ class Point {
   float charge;
 }
 
-class Node extends Point {
+class Node {
   String name;
-  float mass;
+  float startAngle;
+  float angleSize;
 }
 
 class Spring {
   int numSegments;
   ArrayList<Point> points = new ArrayList();
+  Point startAnchor;
+  Point endAnchor;
   float k;
   float c;
-  
-
 }
