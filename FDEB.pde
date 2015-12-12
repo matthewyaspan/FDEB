@@ -20,8 +20,9 @@ class fdeb {
   void render(float xPad, float yPad, float wScale, float hScale) {
     /*for (int i = 0; i < 50; ++i) {
     } */
-    renderEdges(xPad, yPad, wScale, hScale);
+    
     renderNodes(xPad, yPad, wScale, hScale);
+    renderEdges(xPad, yPad, wScale, hScale);
   }
 }
 
@@ -57,11 +58,13 @@ class DrawEdge implements EdgeMapFun<Node, Spring> {
     float cx = xPad + wScale / 2;
     float s = min(wScale, hScale);
     return (x * s) + (cx - (s * .5));
+    //return xPad + x * wScale;
   }
   float toRealY(float y) {
     float cy = yPad + hScale / 2;
     float s = min(wScale, hScale);
     return (y * s) + (cy - (s * .5));
+    //return yPad + y * hScale;
   }
   
   void op(Node n, Spring s) {
