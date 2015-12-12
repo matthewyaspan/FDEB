@@ -1,3 +1,30 @@
+class fdeb {
+  Graph<Node, Spring> _graph;
+  float timestep;
+  
+  fdeb(Graph<Node, Spring> graph) {
+    _graph = graph;
+    // 24 fps
+    timestep = .041666666 / 50;
+    //timestep = .001;
+  }
+  
+  void renderNodes(float xPad, float yPad, float wScale, float hScale) {
+    _graph.mapNodes(new DrawNode(xPad, yPad, wScale, hScale));
+  }
+  
+  void renderEdges(float xPad, float yPad, float wScale, float hScale) {
+    _graph.mapNodes(new DrawEdges(_graph, xPad, yPad, wScale, hScale));
+  }
+  
+  void render(float xPad, float yPad, float wScale, float hScale) {
+    /*for (int i = 0; i < 50; ++i) {
+    } */
+    renderEdges(xPad, yPad, wScale, hScale);
+    renderNodes(xPad, yPad, wScale, hScale);
+  }
+}
+
 class DrawEdge implements EdgeMapFun<Node, Spring> {
   float xPad, yPad, wScale, hScale;
   Node start;
@@ -96,30 +123,3 @@ class DrawNode implements NodeMapFun<Node> {
     node = n;
   }
 }*/
-
-class FDEB {
-  Graph<Node, Spring> _graph;
-  float timestep;
-  
-  FDEB(Graph<Node, Spring> graph) {
-    _graph = graph;
-    // 24 fps
-    timestep = .041666666 / 50;
-    //timestep = .001;
-  }
-  
-  void renderNodes(float xPad, float yPad, float wScale, float hScale) {
-    _graph.mapNodes(new DrawNode(xPad, yPad, wScale, hScale));
-  }
-  
-  void renderEdges(float xPad, float yPad, float wScale, float hScale) {
-    _graph.mapNodes(new DrawEdges(_graph, xPad, yPad, wScale, hScale));
-  }
-  
-  void render(float xPad, float yPad, float wScale, float hScale) {
-    /*for (int i = 0; i < 50; ++i) {
-    } */
-    renderEdges(xPad, yPad, wScale, hScale);
-    renderNodes(xPad, yPad, wScale, hScale);
-  }
-}

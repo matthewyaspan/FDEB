@@ -8,8 +8,6 @@ class Point {
 class Node extends Point {
   String name;
   float mass;
-  
-
 }
 
 class Spring {
@@ -18,5 +16,5 @@ class Spring {
   float k;
   float c;
   
-  
+
 }
