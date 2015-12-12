@@ -8,6 +8,7 @@ class Point {
 class Node extends Point {
   String name;
   float mass;
+  ArrayList<Integer> papers;
   
 
 }

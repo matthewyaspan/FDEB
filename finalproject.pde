@@ -6,33 +6,68 @@ int numSegments = 100;
 Graph<Node, Spring> parseFile(String file) {
   Graph<Node, Spring> graph = new Graph<Node, Spring>();
   String[] lines = loadStrings(file);
-  
+  HashMap<String, Node> nodes = new HashMap<String, Node>();
+  HashMap<Integer, ArrayList<Integer>> papers = new HashMap<Integer, ArrayList<Integer>>();
+  HashMap<Integer, String> paperToAuthor = new HashMap<Integer, String>();
+    
     
   int numEntries = lines.length;
   String str;
   String[] authors;
-  
+  Node n new Node();
+  Integer paperIndex  = 0;;
+  String author = "";
+
+
   for (int i = 0; i < numEntries; i++) {
+
+    
     if (lines[i].indexOf("@") == 1 && lines[i].length() > 2) {
       str = lines[i].substring(2, lines[i].length() - 1);
       authors = str.split(",");
-      for (int j = 0; j < authors.length; j++) {
-            Node n = new Node();
-            n.mass = 1.0;
-            n.name = authors[j];
-            graph.addNode(n, authors[j]);
-        
-        for (int k = j + 1; k < authors.length; k++) {
-          if (j < authors.length - 1) {
+      author = authors[0];
+      if (nodes.containsKey(author)) n = nodes.get(author);
+      else n = new Node();
+      n.name = author;
+      
+    }
+    if (lines[i].indexOf("index") == 1 && lines[i].length() > 6) {
+      str = lines[i].substring(6, lines[i].length() - 1);
+      paperIndex = Integer.parseInt(str);
+      n.papers.add(paperIndex);      
+      paperToAuthor.put(paperIndex, author);
+      
+    }
+    
+    if (lines[i].indexOf("%") == 1 && lines[i].length() > 2) {
+      str = lines[i].substring(2, lines[i].length() - 1);
+      papers.get(paperIndex).add(Integer.parseInt(str));
+      
+    }
+      
+    }
+    
+    Iterator<String> iter = nodes.keySet().iterator();
+    while(iter.hasNext()) {
+      String nodeKey = iter.next();
+      Node toInsert = nodes.get(nodeKey);
+      graph.addNode(toInsert, toInsert.name);
+      
+      for (int i = 0; i < toInsert.papers.size(); i++) {
+        Integer paperid = toInsert.papers.get(i);
+        ArrayList<Integer> citedBy = papers.get(paperid);
+        for (int j = 0; j < citedBy.size(); j++) {
+          if (paperToAuthor.containsKey(citedBy.get(j))) {
             Spring sp = new Spring();
             sp.numSegments = numSegments;
-            sp.k = K;
-            sp.c = CHARGE;
-            graph.undirectedEdge(authors[j], authors[k], sp);
-          }}}}
-          
-  }
-  
+            graph.directedEdge(toInsert.name, paperToAuthor.get(citedBy.get(j)), sp);
+          }
+        }
+      }
+      
+    }
+    
+   
   
   return graph;
 }
