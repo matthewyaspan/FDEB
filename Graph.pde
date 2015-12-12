@@ -13,10 +13,12 @@ public interface EdgeMapFun<NodeType, EdgeData> {
 
 class Edge<EdgeData> {
   String n1, n2;
+  boolean directed;
   EdgeData data;
-  Edge(String _n1, String _n2, EdgeData _data) {
+  Edge(String _n1, String _n2, boolean _directed, EdgeData _data) {
     n1 = _n1;
     n2 = _n2;
+    directed = _directed;
     data = _data;
   }
 }
@@ -39,7 +41,10 @@ class Graph<NodeType, EdgeData> {
   }
 
   void undirectedEdge(String id1, String id2, EdgeData data) {
-    _edges.add(new Edge<EdgeData>(id1, id2, data));
+    _edges.add(new Edge<EdgeData>(id1, id2, false, data));
+  }
+  void directedEdge(String id1, String id2, EdgeData data) {
+    _edges.add(new Edge<EdgeData>(id1, id2, true, data));
   }
   void mapNodes(NodeMapFun fun) {
     Iterator<NodeType> i = _nodes.values().iterator();
@@ -53,6 +58,20 @@ class Graph<NodeType, EdgeData> {
         fun.op(_edges.get(i).n1 == id ? _nodes.get(_edges.get(i).n2) :
                                         _nodes.get(_edges.get(i).n1),
                _edges.get(i).data);
+      }
+    }
+  }
+  void mapOutgoingEdges(String id, EdgeMapFun fun) {
+    for (int i = 0; i < _edges.size(); ++i) {
+      if (_edges.get(i).n1 == id) {
+        fun.op(_nodes.get(_edges.get(i).n2), _edges.get(i).data);
+      }
+    }
+  }
+  void mapIncomingEdges(String id, EdgeMapFun fun) {
+    for (int i = 0; i < _edges.size(); ++i) {
+      if (_edges.get(i).n2 == id) {
+        fun.op(_nodes.get(_edges.get(i).n1), _edges.get(i).data);
       }
     }
   }
