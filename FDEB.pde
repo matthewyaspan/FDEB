@@ -69,6 +69,7 @@ class DrawEdges implements NodeMapFun<Node> {
 class DrawNode implements NodeMapFun<Node> {
   float xPad, yPad, wScale, hScale;
   void op(Node n) {
+    println("drawingnode");
     colorMode(RGB, 255);
     fill(0, 0, 255);
   //  fill(nthColor(n.id));
@@ -122,4 +123,5 @@ class DrawNode implements NodeMapFun<Node> {
     fy = 0;
     node = n;
   }
+
 }*/
