@@ -24,6 +24,7 @@ class Edge<EdgeData> {
 class Graph<NodeType, EdgeData> {
   private HashMap<String, NodeType> _nodes;
   private ArrayList<Edge<EdgeData>> _edges;
+
   Graph() {
     _nodes = new HashMap<String, NodeType>();
     _edges = new ArrayList<Edge<EdgeData>>();
