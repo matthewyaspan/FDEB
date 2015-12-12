@@ -8,7 +8,7 @@ class Point {
 class Node extends Point {
   String name;
   float mass;
-  ArrayList<Integer> papers;
+  ArrayList<Integer> papers = new ArrayList<Integer>();
   
 
 }
@@ -19,5 +19,5 @@ class Spring {
   float k;
   float c;
   
-  
+
 }
