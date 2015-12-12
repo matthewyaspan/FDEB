@@ -516,6 +516,54 @@
 #index214023
 #%162995
 
+
+#@Kyle Jonesberger
+#index162995
+#%12
+#%13
+
+#@Abby K. Parech
+#index78
+#%1
+#%2
+
+#@Jay DeStories
+#index226571
+#%13
+#%14
+
+
+#@Jared Bronen
+#index298457
+#%226571
+#%22
+#%40
+#%45
+
+#@Matthew Yaspan
+#index436906
+#%39
+#%38
+#%50
+
+
+
+#@Noboru Murata,Takashi Takenouchi,Takafumi Kanamori,Shinto Eguchi
+#index436405
+#%436906
+#%226571
+#%22
+#%40
+#%45
+#%13
+#%17
+#%18
+#%2
+
+
+
+
+
 #*MAG-EX: a magnetics fabrication expert system focusing expert systems technology on improving quality control
 #@Kyle Tolar,Richard G. Platt
 #t1992
