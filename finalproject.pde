@@ -45,8 +45,8 @@ class SetAnchors implements EdgeMapFun<Node, Spring> {
     p.vy = 0;
     p.charge = 0;
     
-    p.x = cx + (r * cos(start + (used * sliceSize)));
-    p.y = cy + (r * sin(start + (used * sliceSize)));
+    p.x = cx + (r * cos(start + ((used + .5) * sliceSize)));
+    p.y = cy + (r * sin(start + ((used + .5) * sliceSize)));
     
     if (outgoing) {
       e.startAnchor = p;
@@ -88,9 +88,9 @@ class InitializeEdges implements NodeMapFun<Node> {
   void op(Node n) {
     int numEndpoints = 2 * g.numEdges();
     float sliceSize = TWO_PI / (float) numEndpoints;
-    SetAnchors outgoingAnchors = new SetAnchors(true, n.startAngle, 0, sliceSize, .45, .5, .5);
+    SetAnchors outgoingAnchors = new SetAnchors(true, n.startAngle, 0, sliceSize, .4, .5, .5);
     g.mapOutgoingEdges(n.name, outgoingAnchors);
-    g.mapIncomingEdges(n.name, new SetAnchors(false, n.startAngle, outgoingAnchors.used, sliceSize, .45, .5, .5));
+    g.mapIncomingEdges(n.name, new SetAnchors(false, n.startAngle, outgoingAnchors.used, sliceSize, .4, .5, .5));
   }
 
   InitializeEdges(Graph<Node, Spring> _g) {

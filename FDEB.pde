@@ -5,8 +5,7 @@ class fdeb {
   fdeb(Graph<Node, Spring> graph) {
     _graph = graph;
     // 24 fps
-    timestep = .041666666 / 50;
-    //timestep = .001;
+    timestep = .041666666;
   }
   
   void renderNodes(float xPad, float yPad, float wScale, float hScale) {
@@ -17,11 +16,14 @@ class fdeb {
     _graph.mapNodes(new DrawEdges(_graph, xPad, yPad, wScale, hScale));
   }
   
+  void updateEdges(float dt) {
+    
+  }
+  
   void render(float xPad, float yPad, float wScale, float hScale) {
-    /*for (int i = 0; i < 50; ++i) {
-    } */
-    renderEdges(xPad, yPad, wScale, hScale);
+    updateEdges(timestep);
     renderNodes(xPad, yPad, wScale, hScale);
+    renderEdges(xPad, yPad, wScale, hScale);
   }
 }
 
@@ -31,6 +33,7 @@ class DrawNode implements NodeMapFun<Node> {
   void op(Node n) {
     colorMode(RGB, 255);
     fill(0, 0, 255);
+    stroke(0);
     strokeWeight(2);
     float cx = xPad + .5 * wScale;
     float cy = yPad + .5 * hScale;
@@ -57,11 +60,13 @@ class DrawEdge implements EdgeMapFun<Node, Spring> {
     float cx = xPad + wScale / 2;
     float s = min(wScale, hScale);
     return (x * s) + (cx - (s * .5));
+    //return xPad + x * wScale;
   }
   float toRealY(float y) {
     float cy = yPad + hScale / 2;
     float s = min(wScale, hScale);
     return (y * s) + (cy - (s * .5));
+    //return yPad + y * hScale;
   }
   
   void op(Node n, Spring s) {
