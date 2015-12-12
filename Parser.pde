@@ -45,16 +45,13 @@ Graph<Node, Spring> parseFile(String file) {
   while (iter.hasNext()) {
     String nodeKey = iter.next();
     Node toInsert = nodes.get(nodeKey);
-    println("inserting node: " + toInsert.name);
     graph.addNode(toInsert, toInsert.name);
 
     for (int i = 0; i < toInsert.papers.size(); i++) {
-      println("paper: " + toInsert.papers.get(i) + " citing: " + papers.get(toInsert.papers.get(i)));
       Integer paperid = toInsert.papers.get(i);
       ArrayList<Integer> citations = papers.get(paperid);
       for (int j = 0; j < citations.size(); j++) {
         if (paperToAuthor.containsKey(citations.get(j))) {
-          println("citation");
           Spring sp = new Spring();
           sp.numSegments = numSegments;
           graph.directedEdge(toInsert.name, paperToAuthor.get(citations.get(j)), sp);

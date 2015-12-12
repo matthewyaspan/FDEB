@@ -5,8 +5,7 @@ class fdeb {
   fdeb(Graph<Node, Spring> graph) {
     _graph = graph;
     // 24 fps
-    timestep = .041666666 / 50;
-    //timestep = .001;
+    timestep = .041666666;
   }
   
   void renderNodes(float xPad, float yPad, float wScale, float hScale) {
@@ -17,10 +16,12 @@ class fdeb {
     _graph.mapNodes(new DrawEdges(_graph, xPad, yPad, wScale, hScale));
   }
   
-  void render(float xPad, float yPad, float wScale, float hScale) {
-    /*for (int i = 0; i < 50; ++i) {
-    } */
+  void updateEdges(float dt) {
     
+  }
+  
+  void render(float xPad, float yPad, float wScale, float hScale) {
+    updateEdges(timestep);
     renderNodes(xPad, yPad, wScale, hScale);
     renderEdges(xPad, yPad, wScale, hScale);
   }
@@ -32,6 +33,7 @@ class DrawNode implements NodeMapFun<Node> {
   void op(Node n) {
     colorMode(RGB, 255);
     fill(0, 0, 255);
+    stroke(0);
     strokeWeight(2);
     float cx = xPad + .5 * wScale;
     float cy = yPad + .5 * hScale;
