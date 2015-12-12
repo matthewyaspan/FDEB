@@ -37,8 +37,12 @@ class Graph<NodeType, EdgeData> {
      
   }
   
-  int numNodes () {
+  int numNodes() {
     return _nodes.size();
+  }
+  
+  int numEdges() {
+    return _edges.size();
   }
 
   void undirectedEdge(String id1, String id2, EdgeData data) {
