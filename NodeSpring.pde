@@ -15,6 +15,8 @@ class Node {
 class Spring {
   int numSegments;
   ArrayList<Point> points = new ArrayList();
+  int sourceId;
+  int paperId;
   Point startAnchor;
   Point endAnchor;
   float k;

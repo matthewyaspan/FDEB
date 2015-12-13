@@ -229,14 +229,4 @@ hover:
 if mouse center is at point center within certain width, highlight entire edge
 if mouse center is between two points line, highlight entire edge
 
-
-
-
-
-
-
-
-
-
-
 */

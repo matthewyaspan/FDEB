@@ -1,3 +1,4 @@
+HashMap<Integer, String> indexToPaper;
 
 Graph<Node, Spring> parseFile(String file) {
   Graph<Node, Spring> graph = new Graph<Node, Spring>();
@@ -5,6 +6,7 @@ Graph<Node, Spring> parseFile(String file) {
   HashMap<String, Node> nodes = new HashMap<String, Node>();
   HashMap<Integer, ArrayList<Integer>> papers = new HashMap<Integer, ArrayList<Integer>>();
   HashMap<Integer, String> paperToAuthor = new HashMap<Integer, String>();
+  indexToPaper = new HashMap<Integer, String>();
 
 
   int numEntries = lines.length;
@@ -13,9 +15,14 @@ Graph<Node, Spring> parseFile(String file) {
   Node n = null;
   Integer paperIndex = 0;
   String author = "";
+  String title = "";
 
   for (int i = 0; i < numEntries; i++) {
-    if (lines[i].indexOf("@") == 1 && lines[i].length() > 2) {
+    if (lines[i].length() > 2 && lines[i].charAt(1) == '*') {
+      str = lines[i].substring(2, lines[i].length());
+      title = str;
+    }
+    if (lines[i].length() > 2 && lines[i].charAt(1) == '@') {
       str = lines[i].substring(2, lines[i].length());
       authors = str.split(",");
       author = authors[0];
@@ -32,9 +39,10 @@ Graph<Node, Spring> parseFile(String file) {
       n.papers.add(paperIndex);  
       papers.put(paperIndex, new ArrayList<Integer>());
       paperToAuthor.put(paperIndex, author);
+      indexToPaper.put(paperIndex, title);
     }
 
-    if (lines[i].indexOf("%") == 1 && lines[i].length() > 2) {
+    if (lines[i].length() > 2 && lines[i].charAt(1) == '%') {
       str = lines[i].substring(2, lines[i].length());
       try {
         papers.get(paperIndex).add(Integer.parseInt(str));
@@ -58,6 +66,8 @@ Graph<Node, Spring> parseFile(String file) {
         if (paperToAuthor.containsKey(citations.get(j))) {
           Spring sp = new Spring();
           sp.numSegments = numSegments;
+          sp.paperId = paperid;
+          sp.sourceId = citations.get(j);
           graph.directedEdge(toInsert.name, paperToAuthor.get(citations.get(j)), sp);
         }
       }
