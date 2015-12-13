@@ -215,14 +215,14 @@ class DrawEdge implements EdgeMapFun<Node, Spring> {
   }
   
     
-  void drawArrow(float x1, float y1, float x2, float y2) {
+  void drawArrow(float x1, float y1, float x2, float y2, float m) {
     line(x1, y1, x2, y2);
     pushMatrix();
     translate(x2, y2);
     float a = atan2(x1 - x2, y2 - y1);
     rotate(a);
-    line(0, 0, -6, -6);
-    line(0, 0, 6, -6);
+    line(0, 0, -m, -m);
+    line(0, 0, m, -m);
     popMatrix();
   }
 
@@ -238,7 +238,7 @@ class DrawEdge implements EdgeMapFun<Node, Spring> {
       colorMode(RGB, 255);
       if ((start.hover || n.hover) && i % 10 == arrowstep) {
         drawArrow(toRealX(s.points.get(i).x), toRealY(s.points.get(i).y), 
-                  toRealX(s.points.get(i + 1).x), toRealY(s.points.get(i + 1).y));
+                  toRealX(s.points.get(i + 1).x), toRealY(s.points.get(i + 1).y), 6);
       } else {
         line(toRealX(s.points.get(i).x), toRealY(s.points.get(i).y), 
              toRealX(s.points.get(i + 1).x), toRealY(s.points.get(i + 1).y));
