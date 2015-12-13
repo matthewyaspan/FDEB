@@ -101,7 +101,7 @@ class EdgeForces implements EdgeMapFun<Node, Spring> {
     int i;
 
     applySpringForce(e.startAnchor, e.points.get(0));
-    for (i = 1; i < e.points.size() - 1; i++) {
+    for (i = 0; i < e.points.size() - 1; i++) {
       applySpringForce(e.points.get(i), e.points.get(i+1));
     }
     applySpringForce(e.points.get(e.points.size()-1), e.endAnchor);

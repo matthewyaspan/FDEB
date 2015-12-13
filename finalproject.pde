@@ -1,5 +1,5 @@
 float K = 15;
-float G = .000001;
+float G = .000002;
 float CHARGE = 0.1;
 int numSegments = 100;
 
