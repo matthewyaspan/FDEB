@@ -36,7 +36,11 @@ Graph<Node, Spring> parseFile(String file) {
 
     if (lines[i].indexOf("%") == 1 && lines[i].length() > 2) {
       str = lines[i].substring(2, lines[i].length());
-      papers.get(paperIndex).add(Integer.parseInt(str));
+      try {
+        papers.get(paperIndex).add(Integer.parseInt(str));
+      } catch (Exception e) {
+        continue;
+      }
     }
   }
 

@@ -141,6 +141,23 @@ class DrawNode implements NodeMapFun<Node> {
     arc(cx, cy, 2 * r, 2 * r, n.startAngle, n.startAngle + n.angleSize, PIE);
     fill(255);
     ellipse(cx, cy, ir * 2, ir * 2);
+    float dx = mouseX - wScale/2;
+    float dy = mouseY - hScale/2;
+    float factor = sqrt((dx * dx) + (dy * dy));
+    dx = dx / factor;
+    dy = dy / factor;
+    float mTheta = dy > 0 ? acos(dx) : TWO_PI - acos(dx);
+    
+    float mR = dist(cx, cy, mouseX, mouseY);
+    if (mR >= ir && mR <= r) {
+      if (mTheta >= n.startAngle && mTheta <= (n.startAngle + n.angleSize)) {
+        fill(255);
+        stroke(0);
+        rect(25, 25, 150, 30);
+        fill(0);
+        text("Name: " + n.name, 30, 40);
+      }
+    }
   }
 
   DrawNode(float _xPad, float _yPad, float _wScale, float _hScale) {
@@ -181,6 +198,7 @@ class DrawEdge implements EdgeMapFun<Node, Spring> {
     }
     line(toRealX(s.points.get(s.points.size() - 1).x), toRealY(s.points.get(s.points.size() - 1).y), 
       toRealX(s.endAnchor.x), toRealY(s.endAnchor.y));
+      
   }
   DrawEdge(Node s, float _xPad, float _yPad, float _wScale, float _hScale) {
     start = s;
@@ -206,32 +224,19 @@ class DrawEdges implements NodeMapFun<Node> {
   }
 }
 
-/*class AccumulateSpringForce implements EdgeMapFun<Node, Spring> {
- float fx, fy;
- Node node;
- void op(Node n, Spring s) {
- if (n.id == node.id) return;
- float force;
- int end = s.points.size() - 1;
- s.points
- for (int i = 0; i < end; i++) {
- 
- }
- float dist = sqrt(pow((node.x - n.x), 2) + pow((node.y - n.y), 2));
- force = -s.k * (dist - (s.len / width));
- float dx = node.x - n.x;
- float dy = node.y - n.y;
- float factor = sqrt(pow(dx, 2) + pow(dy, 2));
- dx = dx / factor;
- dy = dy / factor;
- float angle = dy > 0 ? acos(dx) : TWO_PI - acos(dx);
- fx += force * cos(angle);
- fy += force * sin(angle);
- }
- AccumulateSpringForce(Node n) {
- fx = 0;
- fy = 0;
- node = n;
- }
- 
- }*/
+/*
+hover:
+if mouse center is at point center within certain width, highlight entire edge
+if mouse center is between two points line, highlight entire edge
+
+
+
+
+
+
+
+
+
+
+
+*/
