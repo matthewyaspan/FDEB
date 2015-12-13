@@ -17,8 +17,32 @@ class fdeb {
   }
 
   void updateEdges(float dt) {
-    // forces
+    // inter-edge forces
     _graph.mapNodes(new ApplyEdgeForces(_graph));
+    // intra-edge forces
+    for (int i = 1; i < numSegments - 1; ++i) {
+      for (int j = 0; j < _graph._edges.size(); ++j) {
+        for (int k = 0; k < _graph._edges.size(); ++k) {
+          if (j == k) continue;
+          Point p1 = _graph._edges.get(j).data.points.get(i);
+          Point p2 = _graph._edges.get(k).data.points.get(i);
+          float dist = sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
+          float force = -G / pow(dist, 2);
+          if (dist < .01) {
+            force = 0;
+          }
+          
+          float dx = p1.x - p2.x;
+          float dy = p1.y - p2.y;
+          float factor = sqrt(pow(dx, 2) + pow(dy, 2));
+          dx = dx / factor;
+          dy = dy / factor;
+          float angle = dy > 0 ? acos(dx) : TWO_PI - acos(dx);
+          p1.vx += force * cos(angle);
+          p1.vy += force * sin(angle);
+        }
+      }
+    }
     // velocity
     _graph.mapNodes(new MoveEdgeSegments(_graph, dt));
   }
