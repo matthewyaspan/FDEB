@@ -205,33 +205,3 @@ class DrawEdges implements NodeMapFun<Node> {
     hScale = _hScale;
   }
 }
-
-/*class AccumulateSpringForce implements EdgeMapFun<Node, Spring> {
- float fx, fy;
- Node node;
- void op(Node n, Spring s) {
- if (n.id == node.id) return;
- float force;
- int end = s.points.size() - 1;
- s.points
- for (int i = 0; i < end; i++) {
- 
- }
- float dist = sqrt(pow((node.x - n.x), 2) + pow((node.y - n.y), 2));
- force = -s.k * (dist - (s.len / width));
- float dx = node.x - n.x;
- float dy = node.y - n.y;
- float factor = sqrt(pow(dx, 2) + pow(dy, 2));
- dx = dx / factor;
- dy = dy / factor;
- float angle = dy > 0 ? acos(dx) : TWO_PI - acos(dx);
- fx += force * cos(angle);
- fy += force * sin(angle);
- }
- AccumulateSpringForce(Node n) {
- fx = 0;
- fy = 0;
- node = n;
- }
- 
- }*/
