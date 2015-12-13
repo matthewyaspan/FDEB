@@ -17,8 +17,10 @@ class fdeb {
   }
 
   void updateEdges(float dt) {
-    // apply spring forces
-    // apply attraction forces
+    // forces
+    _graph.mapNodes(new ApplyEdgeForces(_graph));
+    // velocity
+    _graph.mapNodes(new MoveEdgeSegments(_graph, dt));
   }
 
   void render(float xPad, float yPad, float wScale, float hScale) {
@@ -50,9 +52,11 @@ class MoveSegments implements EdgeMapFun<Node, Spring> {
 
   void op (Node n, Spring e) {
     int i;
-    for (i = 0; i < e.points.size(); i++) {
+    for (i = 1; i < e.points.size()-1; i++) {
       e.points.get(i).x += _dt * e.points.get(i).vx;
       e.points.get(i).y += _dt * e.points.get(i).vy;
+      e.points.get(i).vx *= .9;
+      e.points.get(i).vy *= .9;
     }
   }
 }
@@ -73,7 +77,7 @@ class EdgeForces implements EdgeMapFun<Node, Spring> {
     int i;
 
     applySpringForce(e.startAnchor, e.points.get(0));
-    for (i = 0; i < e.points.size() - 1; i++) {
+    for (i = 1; i < e.points.size() - 1; i++) {
       applySpringForce(e.points.get(i), e.points.get(i+1));
     }
     applySpringForce(e.points.get(e.points.size()-1), e.endAnchor);
@@ -93,7 +97,10 @@ class EdgeForces implements EdgeMapFun<Node, Spring> {
     p2.vx -= force * cos(angle);
     p2.vy -= force * sin(angle);
   }
+  
 }
+
+
 
 class DrawNode implements NodeMapFun<Node> {
   float xPad, yPad, wScale, hScale;
@@ -144,6 +151,7 @@ class DrawEdge implements EdgeMapFun<Node, Spring> {
     line(toRealX(s.startAnchor.x), toRealY(s.startAnchor.y), 
       toRealX(s.points.get(0).x), toRealY(s.points.get(0).y));
     for (int i = 0; i < s.points.size() - 1; i++) {
+      stroke(lerpColor(color(0, 255, 0), color(255, 0, 0), (float)i / (float)s.points.size()));
       line(toRealX(s.points.get(i).x), toRealY(s.points.get(i).y), 
         toRealX(s.points.get(i + 1).x), toRealY(s.points.get(i + 1).y));
     }

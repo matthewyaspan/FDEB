@@ -1,4 +1,4 @@
-float K = 0.1;
+float K = 15;
 float CHARGE = 0.1;
 int numSegments = 100;
 
@@ -122,5 +122,6 @@ void setup() {
 }
 
 void draw() {
+  background(255);
   fdeb.render(0, 0, width, height);
 }
