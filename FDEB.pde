@@ -1,11 +1,29 @@
+color nthColor(int n) {
+  float h = ((n * .41421) % 1) * 360;
+  float s = .9;
+  float b = .9;
+  colorMode(HSB, 360, 1, 1);
+  return color(h, s, b);
+}
+color nthHoverColor(int n) {
+  float h = ((n * .41421) % 1) * 360;
+  float s = .7;
+  float b = .6;
+  colorMode(HSB, 360, 1, 1);
+  return color(h, s, b);
+}
+
 class fdeb {
   Graph<Node, Spring> _graph;
   float timestep;
+  int arrowstep;
 
   fdeb(Graph<Node, Spring> graph) {
     _graph = graph;
     // 24 fps
     timestep = .041666666;
+    // animated arrows;
+    arrowstep = 0;
   }
 
   void renderNodes(float xPad, float yPad, float wScale, float hScale) {
@@ -13,7 +31,7 @@ class fdeb {
   }
 
   void renderEdges(float xPad, float yPad, float wScale, float hScale) {
-    _graph.mapNodes(new DrawEdges(_graph, xPad, yPad, wScale, hScale));
+    _graph.mapNodes(new DrawEdges(_graph, xPad, yPad, wScale, hScale, arrowstep));
   }
 
   void updateEdges(float dt) {
@@ -51,6 +69,8 @@ class fdeb {
     updateEdges(timestep);
     renderNodes(xPad, yPad, wScale, hScale);
     renderEdges(xPad, yPad, wScale, hScale);
+    arrowstep += 1;
+    arrowstep %= 10;
   }
 }
 
@@ -130,34 +150,42 @@ class DrawNode implements NodeMapFun<Node> {
   float xPad, yPad, wScale, hScale;
 
   void op(Node n) {
+    int colorIndex = n.id;
     colorMode(RGB, 255);
-    fill(0, 0, 255);
+    //fill(0, 0, 255);
+    fill(nthColor(colorIndex));
+    colorMode(RGB, 255);
     stroke(0);
-    strokeWeight(2);
+    strokeWeight(0);
     float cx = xPad + .5 * wScale;
     float cy = yPad + .5 * hScale;
     float r = min(wScale, hScale) * .45;
     float ir = min(wScale, hScale) * .4;
-    arc(cx, cy, 2 * r, 2 * r, n.startAngle, n.startAngle + n.angleSize, PIE);
-    fill(255);
-    ellipse(cx, cy, ir * 2, ir * 2);
+    
+    n.hover = false;
     float dx = mouseX - wScale/2;
     float dy = mouseY - hScale/2;
     float factor = sqrt((dx * dx) + (dy * dy));
     dx = dx / factor;
     dy = dy / factor;
     float mTheta = dy > 0 ? acos(dx) : TWO_PI - acos(dx);
-    
     float mR = dist(cx, cy, mouseX, mouseY);
     if (mR >= ir && mR <= r) {
       if (mTheta >= n.startAngle && mTheta <= (n.startAngle + n.angleSize)) {
+        n.hover = true;
         fill(255);
         stroke(0);
         rect(25, 25, 150, 30);
         fill(0);
         text("Name: " + n.name, 30, 40);
+        fill(nthHoverColor(colorIndex));
+        colorMode(RGB, 255);
       }
     }
+    
+    arc(cx, cy, 2 * r, 2 * r, n.startAngle, n.startAngle + n.angleSize, PIE);
+    fill(255);
+    ellipse(cx, cy, ir * 2, ir * 2);
   }
 
   DrawNode(float _xPad, float _yPad, float _wScale, float _hScale) {
@@ -170,6 +198,7 @@ class DrawNode implements NodeMapFun<Node> {
 
 class DrawEdge implements EdgeMapFun<Node, Spring> {
   float xPad, yPad, wScale, hScale;
+  int arrowstep;
   Node start;
 
   float toRealX(float x) {
@@ -184,6 +213,18 @@ class DrawEdge implements EdgeMapFun<Node, Spring> {
     return (y * s) + (cy - (s * .5));
     //return yPad + y * hScale;
   }
+  
+    
+  void drawArrow(float x1, float y1, float x2, float y2) {
+    line(x1, y1, x2, y2);
+    pushMatrix();
+    translate(x2, y2);
+    float a = atan2(x1 - x2, y2 - y1);
+    rotate(a);
+    line(0, 0, -6, -6);
+    line(0, 0, 6, -6);
+    popMatrix();
+  }
 
   void op(Node n, Spring s) {
     strokeWeight(3);
@@ -192,15 +233,23 @@ class DrawEdge implements EdgeMapFun<Node, Spring> {
     line(toRealX(s.startAnchor.x), toRealY(s.startAnchor.y), 
       toRealX(s.points.get(0).x), toRealY(s.points.get(0).y));
     for (int i = 0; i < s.points.size() - 1; i++) {
-      stroke(lerpColor(color(0, 255, 0), color(255, 0, 0), (float)i / (float)s.points.size()));
-      line(toRealX(s.points.get(i).x), toRealY(s.points.get(i).y), 
-        toRealX(s.points.get(i + 1).x), toRealY(s.points.get(i + 1).y));
+      //stroke(lerpColor(color(0, 255, 0), color(255, 0, 0), (float)i / (float)s.points.size()));
+      stroke(lerpColor(nthColor(s.paperAuthorId), nthColor(s.sourceAuthorId), (float)i / (float)s.points.size()));
+      colorMode(RGB, 255);
+      if ((start.hover || n.hover) && i % 10 == arrowstep) {
+        drawArrow(toRealX(s.points.get(i).x), toRealY(s.points.get(i).y), 
+                  toRealX(s.points.get(i + 1).x), toRealY(s.points.get(i + 1).y));
+      } else {
+        line(toRealX(s.points.get(i).x), toRealY(s.points.get(i).y), 
+             toRealX(s.points.get(i + 1).x), toRealY(s.points.get(i + 1).y));
+      }
     }
     line(toRealX(s.points.get(s.points.size() - 1).x), toRealY(s.points.get(s.points.size() - 1).y), 
       toRealX(s.endAnchor.x), toRealY(s.endAnchor.y));
       
   }
-  DrawEdge(Node s, float _xPad, float _yPad, float _wScale, float _hScale) {
+  DrawEdge(Node s, float _xPad, float _yPad, float _wScale, float _hScale, int _arrowstep) {
+    arrowstep = _arrowstep;
     start = s;
     xPad = _xPad;
     yPad = _yPad;
@@ -211,11 +260,13 @@ class DrawEdge implements EdgeMapFun<Node, Spring> {
 
 class DrawEdges implements NodeMapFun<Node> {
   float xPad, yPad, wScale, hScale;
+  int arrowstep;
   Graph<Node, Spring> graph;
   void op(Node n) {
-    graph.mapOutgoingEdges(n.name, new DrawEdge(n, xPad, yPad, wScale, hScale));
+    graph.mapOutgoingEdges(n.name, new DrawEdge(n, xPad, yPad, wScale, hScale, arrowstep));
   }
-  DrawEdges(Graph<Node, Spring> g, float _xPad, float _yPad, float _wScale, float _hScale) {
+  DrawEdges(Graph<Node, Spring> g, float _xPad, float _yPad, float _wScale, float _hScale, int _arrowstep) {
+    arrowstep = _arrowstep;
     graph = g;
     xPad = _xPad;
     yPad = _yPad;

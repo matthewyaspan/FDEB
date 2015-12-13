@@ -16,6 +16,7 @@ Graph<Node, Spring> parseFile(String file) {
   Integer paperIndex = 0;
   String author = "";
   String title = "";
+  int idNum = 0;
 
   for (int i = 0; i < numEntries; i++) {
     if (lines[i].length() > 2 && lines[i].charAt(1) == '*') {
@@ -30,6 +31,8 @@ Graph<Node, Spring> parseFile(String file) {
       else {
         n = new Node();
         n.name = author;
+        n.id = idNum;
+        idNum++;
         nodes.put(author, n);
       }
     }
@@ -68,6 +71,8 @@ Graph<Node, Spring> parseFile(String file) {
           sp.numSegments = numSegments;
           sp.paperId = paperid;
           sp.sourceId = citations.get(j);
+          sp.sourceAuthorId = nodes.get(paperToAuthor.get(citations.get(j))).id;
+          sp.paperAuthorId = toInsert.id;
           graph.directedEdge(toInsert.name, paperToAuthor.get(citations.get(j)), sp);
         }
       }
