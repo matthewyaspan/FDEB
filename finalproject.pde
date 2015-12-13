@@ -75,6 +75,8 @@ class SetMidPoints implements EdgeMapFun<Node, Spring> {
       p.vy = 0;
       p.charge = CHARGE;
       
+      if (e.endAnchor == null) println("yikes");
+      
       p.x = lerp(e.startAnchor.x, e.endAnchor.x, (float)i / (float)(e.numSegments - 1));
       p.y = lerp(e.startAnchor.y, e.endAnchor.y, (float)i / (float)(e.numSegments - 1));
       
@@ -112,13 +114,13 @@ class InitializeEdgeMidpoints implements NodeMapFun<Node> {
 fdeb fdeb;
 void setup() {
   background(255);
-  surface.setSize(800, 600);
-  Graph<Node, Spring> g = parseFile("smallinput.txt");
+  surface.setSize(1400, 1200);
+  Graph<Node, Spring> g = parseFile("hci.txt");
   g.mapNodes(new PositionNodes(g));
   g.mapNodes(new InitializeEdges(g));
   g.mapNodes(new InitializeEdgeMidpoints(g));
   fdeb = new fdeb(g);
-  fdeb.render(0, 0, 800, 600);
+  fdeb.render(0, 0, 1400, 1200);
 }
 
 void draw() {

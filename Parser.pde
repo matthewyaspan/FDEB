@@ -35,8 +35,13 @@ Graph<Node, Spring> parseFile(String file) {
     }
 
     if (lines[i].indexOf("%") == 1 && lines[i].length() > 2) {
+      boolean isInteger = true;
       str = lines[i].substring(2, lines[i].length());
-      papers.get(paperIndex).add(Integer.parseInt(str));
+            for (int j = 0; j < str.length(); j++) {
+              if (str.charAt(j) < '0' || str.charAt(j) > '9') isInteger = false;
+            }
+
+      if (isInteger) papers.get(paperIndex).add(Integer.parseInt(str));
     }
   }
 
