@@ -59,8 +59,9 @@ class Graph<NodeType, EdgeData> {
   }
   void mapEdges(String id, EdgeMapFun fun) {
     for (int i = 0; i < _edges.size(); ++i) {
-      if (_edges.get(i).n1 == id || _edges.get(i).n2 == id) {
-        fun.op(_edges.get(i).n1 == id ? _nodes.get(_edges.get(i).n2) :
+
+      if (_edges.get(i).n1.equals(id) || _edges.get(i).n2.equals(id)) {
+        fun.op(_edges.get(i).n1.equals(id) ? _nodes.get(_edges.get(i).n2) :
                                         _nodes.get(_edges.get(i).n1),
                _edges.get(i).data);
       }
@@ -68,14 +69,15 @@ class Graph<NodeType, EdgeData> {
   }
   void mapOutgoingEdges(String id, EdgeMapFun fun) {
     for (int i = 0; i < _edges.size(); ++i) {
-      if (_edges.get(i).n1 == id) {
+      if (_edges.get(i).n1.equals(id)) {
         fun.op(_nodes.get(_edges.get(i).n2), _edges.get(i).data);
       }
     }
   }
   void mapIncomingEdges(String id, EdgeMapFun fun) {
     for (int i = 0; i < _edges.size(); ++i) {
-      if (_edges.get(i).n2 == id) {
+      if (_edges.get(i).n2.equals(id)) {
+
         fun.op(_nodes.get(_edges.get(i).n1), _edges.get(i).data);
       }
     }

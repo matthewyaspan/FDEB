@@ -17,17 +17,16 @@ class PositionNodes implements NodeMapFun<Node> {
   Graph<Node, Spring> g;
 
   void op(Node n) {
-    
     CountEdges nEdges = new CountEdges();
     g.mapEdges(n.name, nEdges);
     int nodeSize = nEdges.acc;
+
     //int nodeSize = n.papers.size();
     
     
     n.startAngle = iterator * TWO_PI / numEndPoints;//numPapers;//numEndpoints;
     n.angleSize = nodeSize * TWO_PI / numEndPoints;//numPapers;//numEndpoints;
 
-    println("start angle: " + n.startAngle + " end angle: " + (n.startAngle + n.angleSize));
     iterator += nodeSize;
   }
 
@@ -128,7 +127,6 @@ class SetMidPoints implements EdgeMapFun<Node, Spring> {
       p.vy = 0;
       p.charge = CHARGE;
       
-      if (e.endAnchor == null) println("yikes");
       
       p.x = lerp(e.startAnchor.x, e.endAnchor.x, (float)i / (float)(e.numSegments - 1));
       p.y = lerp(e.startAnchor.y, e.endAnchor.y, (float)i / (float)(e.numSegments - 1));

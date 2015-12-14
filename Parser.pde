@@ -1,7 +1,6 @@
 HashMap<Integer, String> indexToPaper;
 
 ArrayList<ArrayList<String>> ArraySplit(String[] input, String[] delimiters) {
-  println("input len: " + input.length);
   ArrayList<ArrayList<String>> split = new ArrayList<ArrayList<String>>();
   if (input.length == 0) return null;
   split.add(new ArrayList<String>());
@@ -153,12 +152,10 @@ Graph<Node, Spring> parseFile(String file) {
   }*/
 
   Iterator<String> iter = nodes.keySet().iterator();
-  println(nodes.keySet().size());
   while (iter.hasNext()) {
     String nodeKey = iter.next();
     Node toInsert = nodes.get(nodeKey);
     graph.addNode(toInsert, toInsert.name);
-
     for (int i = 0; i < toInsert.papers.size(); i++) {
       Integer paperid = toInsert.papers.get(i);
       ArrayList<Integer> citations = papers.get(paperid);
