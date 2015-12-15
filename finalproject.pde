@@ -195,8 +195,41 @@ void PruneBadNodes(Graph<Node, Spring> g) {
   }
 }*/
 
+class Slider {
+  float scale = 0;
+  String _label;
+  float _min, _max;
+  float getVal() {
+    return lerp(_min, _max, scale);
+  }
+  void render(float xPad, float yPad, float wScale, float hScale) {
+    fill(255);
+    stroke(0);
+    rect(xPad, yPad, wScale, hScale);
+    // thumb
+    float r = hScale / 2;
+    if (mouseX > xPad && mouseX < xPad + wScale && mouseY > yPad && mouseY < yPad + hScale && mousePressed) {
+      scale = (mouseX - xPad) / wScale;
+    }
+    fill(0);
+    float cx, cy;
+    cx = xPad + (scale * wScale) + r;
+    cy = yPad + r;
+    ellipse(cx, cy, 2 * r, 2 * r);
+    text(_label + ": " + getVal(), xPad, yPad + 40);
+  }
+  Slider(String label, float min, float max, float start) {
+    _min = min;
+    _max = max;
+    _label = label;
+    scale = (start - min) / (max - min);
+  }
+}
+
 
 fdeb fdeb;
+Slider gravity;
+Slider springConstant;
 PFont font;
 void setup() {
   background(255);
@@ -208,14 +241,19 @@ void setup() {
   g.mapNodes(new InitializeEdgeMidpoints(g));
   fdeb = new fdeb(g);
   fdeb.render(0, 0, 1400, 1200);
-  
+  gravity = new Slider("Gravity", .0000001, .000010, .000002);
+  springConstant = new Slider("Spring constant", 1, 30, 15);
 }
 
 void draw() {
   background(255);
-  fdeb.render(0, 0, width, height);
+  fdeb.render(0, 0, width, height - 100);
   fill(0);
   textSize(20);
   textFont(font, 20);
   text("HCI Citations", width/2-30, 25);
+  gravity.render(100, height - 100, 200, 20);
+  G = gravity.getVal();
+  springConstant.render(500, height - 100, 200, 20);
+  K = springConstant.getVal();
 }
