@@ -10,6 +10,19 @@ class CountEdges implements EdgeMapFun<Node, Spring> {
   }
 }
 
+class CountAllEdges implements NodeMapFun<Node> {
+  int acc = 0;
+  Graph<Node, Spring> _g;
+  void op(Node n) {
+    CountEdges nEdges = new CountEdges();
+    _g.mapEdges(n.name, nEdges);
+    acc += nEdges.acc;
+  }
+  CountAllEdges(Graph<Node, Spring> g) {
+    _g = g;
+  }
+}
+
 class PositionNodes implements NodeMapFun<Node> {
   int numPapers;
   int numEndPoints;
@@ -32,7 +45,10 @@ class PositionNodes implements NodeMapFun<Node> {
 
   PositionNodes(Graph<Node, Spring> _g) {
     g = _g;
-    numEndPoints = 2 * _g.numEdges();
+    //numEndPoints = 2 * _g.numEdges();
+    CountAllEdges endpointsCounter = new CountAllEdges(g);
+    g.mapNodes(endpointsCounter);
+    numEndPoints = endpointsCounter.acc;
     //numPapers = indexToPaper.keySet().size();
     iterator = 0;
   }
@@ -163,6 +179,21 @@ class InitializeEdgeMidpoints implements NodeMapFun<Node> {
     g = _g;
   }
 }
+
+/*
+void PruneBadNodes(Graph<Node, Spring> g) {
+  for (int i = 0; i < g._edges.size(); ++i) {
+    if (g._edges.get(i).data.startAnchor == null || g._edges.get(i).data.endAnchor == null) {
+      if (g._edges.get(i).data.startAnchor == null) {
+        g._nodes.remove(g._edges.get(i).data.paperAuthorId);
+      } else {
+        g._nodes.remove(g._edges.get(i).data.sourceAuthorId);
+      }
+      g._edges.remove(i);
+      i--;
+    }
+  }
+}*/
 
 
 fdeb fdeb;
