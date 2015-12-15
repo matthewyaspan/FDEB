@@ -175,7 +175,7 @@ class DrawNode implements NodeMapFun<Node> {
         n.hover = true;
         fill(255);
         stroke(0);
-        rect(25, 25, 150, 30);
+        //rect(25, 25, 150, 30);
         fill(0);
         text("Name: " + n.name, 30, 40);
         fill(nthHoverColor(colorIndex));

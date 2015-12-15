@@ -1,0 +1,382 @@
+#*``It's Just a Matter of Common Sense'': Ethnography as Invisible Work.
+#@Diana E. Forsythe
+#t1999
+#cComputer Supported Cooperative Work
+#index831529
+#% 
+#!
+  
+#*Discovering Social Networks from Event Logs.
+#@Wil M. P. van der Aalst,Hajo A. Reijers,Minseok Song
+#t2005
+#cComputer Supported Cooperative Work
+#index831530
+#%88264
+#%121634
+#%176198
+#%177227
+#%244732
+#%642166
+#%771483
+#%774547
+#%831786
+#%845481
+#%1112310
+#%1124267
+#%3004549
+#%3005528
+#!
+  
+#*Alan J. Munro, Kristina Höök and David Benyon (eds.), Social Navigation of Information Space - Review.
+#@Mike Fraser
+#t2001
+#cComputer Supported Cooperative Work
+#index831531
+#% 
+#!
+  
+#*The Camera as an Actor Design-in-Use of Telemedicine Infrastructure in Surgery.
+#@Margunn Aanestad
+#t2003
+#cComputer Supported Cooperative Work
+#index831532
+#% 
+#!
+  
+#*Remote Collaboration Over Video Data: Towards Real-Time e-Social Science.
+#@Mike Fraser,Jon Hindmarsh,Katie Best,Christian Heath,Greg Biegel,Chris Greenhalgh,Stuart Reeves
+#t2006
+#cComputer Supported Cooperative Work
+#index831533
+#%88381
+#%88514
+#%88731
+#%89006
+#%121679
+#%121759
+#%121685
+#%121835
+#%633965
+#%770167
+#%831556
+#%831612
+#%831722
+#%1116922
+#%1116943
+#%1117008
+#!
+  
+#*Organizational Memory as Objects, Processes, and Trajectories: An Examination of Organizational Memory in Use.
+#@Mark S. Ackerman,Christine Halverson
+#t2004
+#cComputer Supported Cooperative Work
+#index831534
+#% 
+#!
+  
+#*Participatory Design in Consulting.
+#@Johannes Gärtner
+#t1998
+#cComputer Supported Cooperative Work
+#index831535
+#%770695
+#!
+  
+#*A Light Workflow Management System Using Simple Process Models.
+#@Alessandra Agostini,Giorgio De Michelis
+#t2000
+#cComputer Supported Cooperative Work
+#index831536
+#% 
+#!
+  
+#*A Tale of Two Toolkits: Relating Infrastructure and Use in Flexible CSCW Toolkits.
+#@Paul Dourish,W. Keith Edwards
+#t2000
+#cComputer Supported Cooperative Work
+#index831537
+#% 
+#!
+  
+#*Introduction.
+#@
+#t2000
+#cComputer Supported Cooperative Work
+#index831538
+#% 
+#!
+  
+#*Contexts, Work Processes, and Workspaces.
+#@Alessandra Agostini,Giorgio De Michelis,Maria Antonietta Grasso,Wolfgang Prinz,Anja Syri
+#t1996
+#cComputer Supported Cooperative Work
+#index831539
+#% 
+#!
+  
+#*Enterprise-Level Groupware Choices: Evaluating Lotus Notes and Intranet-Based Solutions.
+#@Mark Ginsburg,Katherine Duliba
+#t1997
+#cComputer Supported Cooperative Work
+#index831540
+#%121614
+#%121684
+#%121927
+#%245061
+#%246846
+#%771483
+#%831563
+#%1103379
+#!
+  
+#*From High Tech to Human Tech: Empowerment, Measurement, and Social Studies of Computing.
+#@Philip E. Agre
+#t1994
+#cComputer Supported Cooperative Work
+#index831541
+#% 
+#!
+  
+#*Your Place or Mine? Learning from Long-Term Use of Audio-Video Communication.
+#@Paul Dourish,Annette Adler,Victoria Bellotti,D. Austin Henderson Jr.
+#t1996
+#cComputer Supported Cooperative Work
+#index831542
+#% 
+#!
+  
+#*Boundary Negotiating Artifacts: Unbinding the Routine of Boundary Objects and Embracing Chaos in Collaborative Work.
+#@Charlotte P. Lee
+#t2007
+#cComputer Supported Cooperative Work
+#index831543
+#%87682
+#%121827
+#%121975
+#%121802
+#%174835
+#%237274
+#%326860
+#%831654
+#%831732
+#%831731
+#%936778
+#%1047088
+#!
+  
+#*Introduction to Special Issue on Evolving Use of Groupware.
+#@J. H. Erik Andriessen,Marike Hettinga,Volker Wulf
+#t2003
+#cComputer Supported Cooperative Work
+#index831544
+#%121659
+#%121754
+#%121890
+#%121954
+#!
+  
+#*The Effects of a "Distinct Window" Screen Design on Computer-Mediated Group Decision Making.
+#@Vitaly Dubrovsky,Danial Clapper,Monali Ullal
+#t1995
+#cComputer Supported Cooperative Work
+#index831545
+#% 
+#!
+  
+#*An Operational Transformation Algorithm and Performance Evaluation.
+#@Du Li,Rui Li
+#t2008
+#cComputer Supported Cooperative Work
+#index831546
+#%87449
+#%112663
+#%116161
+#%121596
+#%121621
+#%121763
+#%121719
+#%121916
+#%122003
+#%121958
+#%121960
+#%122038
+#%122015
+#%301192
+#%341263
+#%598576
+#%771483
+#%831572
+#%831697
+#%831814
+#%833085
+#%894045
+#%929296
+#%1116895
+#%1117008
+#%1126148
+#!
+  
+#*Time, Technology and Groups: An Integration.
+#@Holly Arrow,Jennifer L. Berdahl,Kelly S. Bouas,Kellina M. Craig,Anne Cummings,Linda Lebie,Joseph E. McGrath,Kathleen M. O'Connor,Jonathan A. Rhoades,Ann Schlosser
+#t1995
+#cComputer Supported Cooperative Work
+#index831547
+#% 
+#!
+  
+#*Design Tools and Framing Practices.
+#@Friedrich Glock
+#t2003
+#cComputer Supported Cooperative Work
+#index831548
+#%748948
+#%831567
+#%831601
+#!
+  
+#*Comparing Collaborative Drawing Tools and Whiteboards: An Analysis of the Group Process.
+#@Kregg Aytes
+#t1995
+#cComputer Supported Cooperative Work
+#index831549
+#% 
+#!
+  
+#*Distributed Coordination and Workflow on the World Wide Web.
+#@Antonietta Grasso,Jean-Luc Meunier,Daniele Pagani,Remo Pareschi
+#t1997
+#cComputer Supported Cooperative Work
+#index831550
+#%121673
+#%121616
+#%121716
+#%173489
+#%174767
+#%174800
+#%237120
+#%237363
+#%771483
+#%831563
+#%831540
+#%911905
+#%1077732
+#!
+  
+#*Media Production: Towards Creative Collaboration Using Communication Networks.
+#@Ellen Baker,John Geirland,Tom Fisher,Annmarie Chandler
+#t1999
+#cComputer Supported Cooperative Work
+#index831551
+#% 
+#!
+  
+#*Workflow Systems: Occasions for Success and Failure.
+#@Rebecca E. Grinter
+#t2000
+#cComputer Supported Cooperative Work
+#index831552
+#%87792
+#%121581
+#%121614
+#%121616
+#%121739
+#%121856
+#%121927
+#%174741
+#%174819
+#%174767
+#%174803
+#%174896
+#%237161
+#%772471
+#%772474
+#%831560
+#%1103379
+#%1103325
+#%1129189
+#%3004192
+#%3010947
+#!
+  
+#*Sensemaking in Technology-Use Mediation: Adapting Groupware Technology in Organizations.
+#@Jorgen P. Bansler,Erling C. Havn
+#t2006
+#cComputer Supported Cooperative Work
+#index831553
+#%88365
+#%121684
+#%121806
+#%121883
+#%121917
+#%121994
+#%769770
+#%771647
+#%805623
+#%831606
+#%831652
+#%831544
+#%831759
+#%831677
+#%831747
+#%1009064
+#%1008962
+#%1103377
+#%1120187
+#%3005528
+#%3010912
+#!
+  
+#*Recomposition: Coordinating a Web of Software Dependencies.
+#@Rebecca E. Grinter
+#t2003
+#cComputer Supported Cooperative Work
+#index831554
+#% 
+#!
+  
+#*Temporal Coordination - On Time and Coordination of Collaborative Activities at a Surgical Department.
+#@Jakob Bardram
+#t2000
+#cComputer Supported Cooperative Work
+#index831555
+#% 
+#!
+  
+#*Words about Images: Coordinating Community in Amateur Photography.
+#@Rebecca E. Grinter
+#t2005
+#cComputer Supported Cooperative Work
+#index831556
+#%87386
+#%89599
+#%90056
+#%90864
+#%121580
+#%121685
+#%121791
+#%160264
+#%506991
+#%807238
+#%1120135
+#!
+  
+#*Mobility Work: The Spatial Dimension of Collaboration at a Hospital.
+#@Jakob Bardram,Claus Bossen
+#t2005
+#cComputer Supported Cooperative Work
+#index831557
+#%62220
+#%90768
+#%90769
+#%121636
+#%121617
+#%121796
+#%566630
+#%807503
+#%831592
+#%1116936
+#%1116882
+#%3005528
+#!
+
+  

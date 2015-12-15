@@ -166,18 +166,25 @@ class InitializeEdgeMidpoints implements NodeMapFun<Node> {
 
 
 fdeb fdeb;
+PFont font;
 void setup() {
   background(255);
-  surface.setSize(1400, 1200);
-  Graph<Node, Spring> g = parseFile("hci.txt");
+  surface.setSize(800, 800);
+  font = loadFont("SourceSansPro-Regular-20.vlw");
+  Graph<Node, Spring> g = parseFile("hci2");
   g.mapNodes(new PositionNodes(g));
   g.mapNodes(new InitializeEdges(g));
   g.mapNodes(new InitializeEdgeMidpoints(g));
   fdeb = new fdeb(g);
   fdeb.render(0, 0, 1400, 1200);
+  
 }
 
 void draw() {
   background(255);
   fdeb.render(0, 0, width, height);
+  fill(0);
+  textSize(20);
+  textFont(font, 20);
+  text("HCI Citations", width/2-30, 25);
 }
